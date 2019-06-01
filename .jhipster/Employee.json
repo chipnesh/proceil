@@ -1,0 +1,40 @@
+{
+    "name": "Employee",
+    "fields": [
+        {
+            "fieldName": "employeeName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": 1
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": 1
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "measurement",
+            "otherEntityRelationshipName": "worker",
+            "relationshipName": "measurement"
+        }
+    ],
+    "changelogDate": "20190601131248",
+    "entityTableName": "employee",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "proceil"
+    ]
+}

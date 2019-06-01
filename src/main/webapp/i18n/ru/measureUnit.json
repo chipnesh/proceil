@@ -1,0 +1,14 @@
+{
+  "proceilApp": {
+    "MeasureUnit": {
+      "null": "",
+      "METER": "МЕТР",
+      "SQUARE_METER": "КВАДРАТНЫЙ МЕТР",
+      "KILO": "КИЛОГРАММ",
+      "LITRES": "ЛИТР",
+      "QANTITY": "ШТУКА",
+      "BOX": "КОРОБКА",
+      "SET": "НАБОР"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "proceilApp": {
+    "material": {
+      "home": {
+        "title": "Материалы",
+        "createLabel": "Создать новый материал",
+        "createOrEditLabel": "Создать или отредактировать материал"
+      },
+      "created": "Новый материал создан с идентификатором {{ param }}",
+      "updated": "Материал обновлен с идентификатором {{ param }}",
+      "deleted": "Материал удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить материал {{ id }}?"
+      },
+      "detail": {
+        "title": "Материал"
+      },
+      "materialName": "Название",
+      "materialDescription": "Описание",
+      "materialPrice": "Цена",
+      "image": "Изображение"
+    }
+  }
+}

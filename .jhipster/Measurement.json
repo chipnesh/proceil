@@ -1,0 +1,55 @@
+{
+    "name": "Measurement",
+    "fields": [
+        {
+            "fieldName": "measurementSummary",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "measureDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "measureNote",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "measureAddress",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "materialMeasurement",
+            "otherEntityRelationshipName": "measurement",
+            "relationshipName": "materials"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "employee",
+            "otherEntityRelationshipName": "measurement",
+            "relationshipName": "worker",
+            "otherEntityField": "employeeName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "customer",
+            "otherEntityRelationshipName": "measurement",
+            "relationshipName": "client",
+            "otherEntityField": "customerSummary"
+        }
+    ],
+    "changelogDate": "20190601131250",
+    "entityTableName": "measurement",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "proceil"
+    ]
+}

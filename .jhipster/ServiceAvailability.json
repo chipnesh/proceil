@@ -1,0 +1,48 @@
+{
+    "name": "ServiceAvailability",
+    "fields": [
+        {
+            "fieldName": "availabilitySummary",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateFrom",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "dateTo",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "remainingQuotas",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "service",
+            "otherEntityRelationshipName": "serviceAvailability",
+            "relationshipName": "service",
+            "otherEntityField": "serviceName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "zone",
+            "otherEntityRelationshipName": "service",
+            "relationshipName": "providedBy",
+            "otherEntityField": "zoneName"
+        }
+    ],
+    "changelogDate": "20190601131245",
+    "entityTableName": "service_availability",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "proceil"
+    ]
+}

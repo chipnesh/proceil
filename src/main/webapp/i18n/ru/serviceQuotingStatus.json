@@ -1,0 +1,10 @@
+{
+  "proceilApp": {
+    "ServiceQuotingStatus": {
+      "null": "",
+      "NEW": "НОВАЯ",
+      "QUOTED": "ВЗЯТО",
+      "BUSY": "ЗАНЯТО"
+    }
+  }
+}

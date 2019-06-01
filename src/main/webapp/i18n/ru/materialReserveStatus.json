@@ -1,0 +1,10 @@
+{
+  "proceilApp": {
+    "MaterialReserveStatus": {
+      "null": "",
+      "NEW": "НОВЫЙ",
+      "RESERVED": "ЗАРЕЗЕРВИРОВАН",
+      "OUT_OF_STOCK": "НЕТ НА СКЛАДЕ"
+    }
+  }
+}

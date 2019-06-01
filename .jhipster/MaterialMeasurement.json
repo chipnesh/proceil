@@ -1,0 +1,45 @@
+{
+    "name": "MaterialMeasurement",
+    "fields": [
+        {
+            "fieldName": "measurementSummary",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "measurementValue",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "measureUnit",
+            "fieldType": "MeasureUnit",
+            "fieldValues": "METER,SQUARE_METER,KILO,LITRES,QANTITY,BOX,SET"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "material",
+            "otherEntityRelationshipName": "materialMeasurement",
+            "relationshipName": "material",
+            "otherEntityField": "materialName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "measurement",
+            "otherEntityRelationshipName": "materials",
+            "relationshipName": "measurement",
+            "otherEntityField": "measurementSummary"
+        }
+    ],
+    "changelogDate": "20190601131249",
+    "entityTableName": "material_measurement",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "proceil"
+    ]
+}

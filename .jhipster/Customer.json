@@ -1,0 +1,84 @@
+{
+    "name": "Customer",
+    "fields": [
+        {
+            "fieldName": "customerSummary",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "firstname",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": 1
+        },
+        {
+            "fieldName": "lastname",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": 1
+        },
+        {
+            "fieldName": "middlename",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "birthDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": 1
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "address",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "feedback",
+            "otherEntityRelationshipName": "author",
+            "relationshipName": "feedback"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "measurement",
+            "otherEntityRelationshipName": "client",
+            "relationshipName": "measurement"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "customerOrder",
+            "otherEntityRelationshipName": "customer",
+            "relationshipName": "order"
+        }
+    ],
+    "changelogDate": "20190601131246",
+    "javadoc": "Client",
+    "entityTableName": "customer",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "proceil"
+    ]
+}

@@ -1,0 +1,28 @@
+{
+    "name": "Facility",
+    "fields": [
+        {
+            "fieldName": "facilityName",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "zone",
+            "otherEntityRelationshipName": "facility",
+            "relationshipName": "zone"
+        }
+    ],
+    "changelogDate": "20190601131240",
+    "entityTableName": "facility",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "proceil"
+    ]
+}

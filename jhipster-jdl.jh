@@ -1,0 +1,256 @@
+application {
+  config {
+	applicationType monolith
+    baseName proceil
+    packageName me.chipnesh.proceil
+    authenticationType session
+    buildTool gradle
+    databaseType sql
+    devDatabaseType h2Disk
+    prodDatabaseType postgresql
+    cacheProvider ehcache
+    enableHibernateCache true
+    clientFramework react
+    useSass false
+    clientPackageManager npm
+    entitySuffix Model
+    dtoSuffix ValueObject
+    enableTranslation true
+    nativeLanguage ru
+    languages [ru]
+    enableSwaggerCodegen true
+    testFrameworks []
+  }
+  
+  entities all
+}
+
+dto all with mapstruct
+service all with serviceClass
+paginate all with pager
+filter all
+
+/** Catalog **/
+
+enum MeasureUnit {
+	METER, SQUARE_METER, KILO,
+    LITRES, QANTITY, BOX, SET
+}
+
+entity AttachedImage {
+	imageName String
+    imageFile ImageBlob
+}
+
+entity Material {
+	materialName String
+    materialDescription String
+    materialPrice BigDecimal
+}
+entity Service {
+	serviceName String
+    serviceDescription String
+    servicePrice BigDecimal
+}
+
+relationship OneToMany {
+	Material{image} to AttachedImage
+    Service{image} to AttachedImage
+}
+
+
+/** Warehouse **/
+
+entity MaterialRequest {
+    requestSummary String
+	createdDate Instant
+    closedDate Instant
+    requestNote TextBlob
+    requestPriority Integer
+    requestStatus MaterialRequestStatus
+    requestedQuantity Integer
+    measureUnit MeasureUnit
+}
+
+enum MaterialRequestStatus {
+	NEW, IN_PROGRESS, FINISHED
+}
+
+entity MaterialArrival {
+    arrivalSummary String
+	arrivalDate Instant
+    arrivalNote TextBlob
+    arrivedQuantity Integer
+    measureUnit MeasureUnit
+}
+
+relationship OneToOne {
+	MaterialArrival{request(requestSummary)} to MaterialRequest
+    MaterialRequest{requester(facilityName)} to Facility
+    MaterialRequest{material(materialName)} to Material
+}
+
+entity Facility {
+	facilityName String
+}
+
+entity Zone {
+	zoneName String
+}
+
+/** Reservation **/
+
+enum MaterialReserveStatus {
+	NEW, RESERVED, OUT_OF_STOCK
+}
+
+enum ServiceQuotingStatus {
+	NEW, QUOTED, BUSY
+}
+
+entity MaterialReserve {
+	reserveDate Instant
+    reserveStatus MaterialReserveStatus
+	quantityToReserve Integer
+    measureUnit MeasureUnit
+}
+
+entity ServiceQuota {
+	dateFrom Instant
+    dateTo Instant
+    quotaStatus ServiceQuotingStatus
+    quantityToQuote Integer
+}
+
+entity MaterialAvailability {
+	availabilitySummary String
+	remainingQuantity Integer
+    measureUnit MeasureUnit
+}
+
+entity ServiceAvailability {
+	availabilitySummary String
+	dateFrom Instant
+    dateTo Instant
+    remainingQuotas Integer
+}
+
+relationship OneToMany {
+    Facility{zone(zoneName)} to Zone{facility(facilityName)}
+    Zone{material(availabilitySummary)} to MaterialAvailability{availableAt(zoneName)}
+    Zone{service(availabilitySummary)} to ServiceAvailability{providedBy(zoneName)}
+}
+
+relationship ManyToOne {
+    MaterialAvailability{material(materialName)} to Material
+    ServiceAvailability{service(serviceName)} to Service
+
+    MaterialReserve{material(materialName)} to Material
+    ServiceQuota{service(serviceName)} to Service
+}
+
+/** Client **/
+
+entity Customer {
+	customerSummary String
+	firstname String required minlength(1)
+    lastname String required minlength(1)
+    middlename String
+    birthDate Instant
+    email String required minlength(1)
+    phone String
+    address String
+}
+
+entity Feedback {
+	caption String required minlength(1)
+    email String
+    text TextBlob required
+    feedbackResponse TextBlob
+}
+
+entity Employee {
+	employeeName String minlength(1)
+    phone String minlength(1)
+}
+
+
+relationship OneToMany {
+	Customer{feedback(caption)} to Feedback{author(customerSummary)}
+}
+
+
+/** Measurement **/
+
+enum MeasurementStatus {
+    NEW, COMPLETED,
+    EXPIRED, CANCELLED
+}
+
+entity MaterialMeasurement {
+	measurementSummary String
+    measurementValue Integer
+    measureUnit MeasureUnit
+}
+
+entity Measurement {
+    measurementSummary String
+	measureDate Instant
+	measureNote TextBlob
+	measureAddress String
+}
+
+relationship OneToMany {
+	Employee{measurement(measureDate)} to Measurement{worker(employeeName)}
+    Customer{measurement(measureDate)} to Measurement{client(customerSummary)}
+    Measurement{materials(measurementName)} to MaterialMeasurement{measurement(measurementSummary)}
+}
+
+relationship ManyToOne {
+    MaterialMeasurement{material(materialName)} to Material
+}
+
+/** Order **/
+
+enum OrderStatus {
+	NEW, PENDING, IN_PROGRESS, WAITING_AVAILABILITY,
+	FULFILLED, CANCELLED, ABANDONED
+}
+
+entity CustomerOrder {
+    orderSummary String
+	createdDate Instant
+    deadlineDate Instant
+    orderStatus OrderStatus
+    orderPaid Boolean
+    orderNote TextBlob
+}
+
+entity OrderMaterial {
+	materialSummary String
+	createdDate Instant
+    materialQuantity Integer required min(0)
+    measureUnit MeasureUnit
+}
+
+entity OrderService {
+	serviceSummary String
+	createdDate Instant
+    serviceDate Instant
+}
+
+relationship OneToOne {
+    OrderMaterial{reserve(reserveStatus)} to MaterialReserve
+    OrderService{quota(quotaStatus)} to ServiceQuota
+}
+
+relationship OneToMany {
+	CustomerOrder{materials(materialSummary)} to OrderMaterial{order(orderSummary)}
+    CustomerOrder{service(serviceSummary)} to OrderService{order(orderSummary)}
+    Customer{order(orderSummary)} to CustomerOrder{customer(customerSummary)}
+}
+
+relationship ManyToOne {
+	CustomerOrder{manager(employeeName)} to Employee
+    OrderService{executor(employeeName)} to Employee
+}

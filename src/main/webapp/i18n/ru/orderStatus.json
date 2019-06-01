@@ -1,0 +1,14 @@
+{
+  "proceilApp": {
+    "OrderStatus": {
+      "null": "",
+      "NEW": "НОВЫЙ",
+      "PENDING": "ПОДГОТОВКА",
+      "IN_PROGRESS": "ВЫПОЛНЯЕТСЯ",
+      "WAITING_AVAILABILITY": "ОЖИДАНИЕ ДОСТУПНОСТИ",
+      "FULFILLED": "ВЫПОЛНЕН",
+      "CANCELLED": "ОТМЕНЕН",
+      "ABANDONED": "ЗАБРОШЕН"
+    }
+  }
+}

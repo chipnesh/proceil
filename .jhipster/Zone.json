@@ -1,0 +1,41 @@
+{
+    "name": "Zone",
+    "fields": [
+        {
+            "fieldName": "zoneName",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "materialAvailability",
+            "otherEntityRelationshipName": "availableAt",
+            "relationshipName": "material"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "serviceAvailability",
+            "otherEntityRelationshipName": "providedBy",
+            "relationshipName": "service"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "facility",
+            "otherEntityRelationshipName": "zone",
+            "relationshipName": "facility",
+            "otherEntityField": "facilityName"
+        }
+    ],
+    "changelogDate": "20190601131241",
+    "entityTableName": "zone",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "proceil"
+    ]
+}

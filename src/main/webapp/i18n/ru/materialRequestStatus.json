@@ -1,0 +1,10 @@
+{
+  "proceilApp": {
+    "MaterialRequestStatus": {
+      "null": "",
+      "NEW": "НОВЫЙ",
+      "IN_PROGRESS": "В ПРОЦЕССЕ",
+      "FINISHED": "ЗАВЕРШЁН"
+    }
+  }
+}

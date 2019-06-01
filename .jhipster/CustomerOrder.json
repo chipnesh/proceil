@@ -1,0 +1,70 @@
+{
+    "name": "CustomerOrder",
+    "fields": [
+        {
+            "fieldName": "orderSummary",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "deadlineDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "orderStatus",
+            "fieldType": "OrderStatus",
+            "fieldValues": "NEW,PENDING,IN_PROGRESS,WAITING_AVAILABILITY,FULFILLED,CANCELLED,ABANDONED"
+        },
+        {
+            "fieldName": "orderPaid",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "orderNote",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "orderMaterial",
+            "otherEntityRelationshipName": "order",
+            "relationshipName": "materials"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "orderService",
+            "otherEntityRelationshipName": "order",
+            "relationshipName": "service"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "employee",
+            "otherEntityRelationshipName": "customerOrder",
+            "relationshipName": "manager",
+            "otherEntityField": "employeeName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "customer",
+            "otherEntityRelationshipName": "order",
+            "relationshipName": "customer",
+            "otherEntityField": "customerSummary"
+        }
+    ],
+    "changelogDate": "20190601131251",
+    "entityTableName": "customer_order",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "proceil"
+    ]
+}

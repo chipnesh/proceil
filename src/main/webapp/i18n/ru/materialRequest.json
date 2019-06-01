@@ -1,0 +1,30 @@
+{
+  "proceilApp": {
+    "materialRequest": {
+      "home": {
+        "title": "Запросы материалов",
+        "createLabel": "Создать новый запрос материала",
+        "createOrEditLabel": "Создать или отредактировать запрос материала"
+      },
+      "created": "Новый запрос материала создан с идентификатором {{ param }}",
+      "updated": "Запрос материала обновлен с идентификатором {{ param }}",
+      "deleted": "Запрос материала удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить запрос материала {{ id }}?"
+      },
+      "detail": {
+        "title": "Запрос материала"
+      },
+      "requestSummary": "Описание",
+      "createdDate": "Дата запроса",
+      "closedDate": "Дата выполнения",
+      "requestNote": "Заметка",
+      "requestPriority": "Приоритет",
+      "requestStatus": "Статус",
+      "requestedQuantity": "Количество",
+      "measureUnit": "Единица измерения",
+      "requester": "Запрашивающий",
+      "material": "Материал"
+    }
+  }
+}

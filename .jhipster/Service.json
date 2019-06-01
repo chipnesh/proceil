@@ -1,0 +1,36 @@
+{
+    "name": "Service",
+    "fields": [
+        {
+            "fieldName": "serviceName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "serviceDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "servicePrice",
+            "fieldType": "BigDecimal"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "attachedImage",
+            "otherEntityRelationshipName": "service",
+            "relationshipName": "image"
+        }
+    ],
+    "changelogDate": "20190601131237",
+    "entityTableName": "service",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "proceil"
+    ]
+}

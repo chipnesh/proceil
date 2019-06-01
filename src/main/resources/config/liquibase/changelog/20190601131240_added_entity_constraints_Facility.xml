@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Facility.
+    -->
+    <changeSet id="20190601131240-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="facility_id"
+                                 baseTableName="facility_zone"
+                                 constraintName="fk_facility_zone_facility_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="facility"/>
+
+        <addForeignKeyConstraint baseColumnNames="zone_id"
+                                 baseTableName="facility_zone"
+                                 constraintName="fk_facility_zone_zone_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="zone"/>
+        
+        <addForeignKeyConstraint baseColumnNames="facility_id"
+                                 baseTableName="facility_service"
+                                 constraintName="fk_facility_service_facility_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="facility"/>
+
+        <addForeignKeyConstraint baseColumnNames="service_id"
+                                 baseTableName="facility_service"
+                                 constraintName="fk_facility_service_service_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="service_availability"/>
+        
+    </changeSet>
+</databaseChangeLog>

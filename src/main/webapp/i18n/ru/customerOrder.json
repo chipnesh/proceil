@@ -1,0 +1,30 @@
+{
+  "proceilApp": {
+    "customerOrder": {
+      "home": {
+        "title": "Заказы",
+        "createLabel": "Создать новый заказ",
+        "createOrEditLabel": "Создать или отредактировать заказ"
+      },
+      "created": "Новый заказ создан с идентификатором {{ param }}",
+      "updated": "Заказ обновлен с идентификатором {{ param }}",
+      "deleted": "Заказ удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить заказ {{ id }}?"
+      },
+      "detail": {
+        "title": "Заказ"
+      },
+      "orderSummary": "Описание",
+      "createdDate": "Дата создания",
+      "deadlineDate": "Срок заказа",
+      "orderStatus": "Статус",
+      "orderPaid": "Оплачен",
+      "orderNote": "Заметка",
+      "materials": "Материалы",
+      "service": "Услуги",
+      "manager": "Менеджер",
+      "customer": "Клиент"
+    }
+  }
+}

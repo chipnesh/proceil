@@ -1,0 +1,27 @@
+{
+  "proceilApp": {
+    "measurement": {
+      "home": {
+        "title": "Замеры",
+        "createLabel": "Создать новый замер",
+        "createOrEditLabel": "Создать или отредактировать замер"
+      },
+      "created": "Новый замер создан с идентификатором {{ param }}",
+      "updated": "Замер обновлен с идентификатором {{ param }}",
+      "deleted": "Замер удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить замер {{ id }}?"
+      },
+      "detail": {
+        "title": "Замер"
+      },
+      "measurementSummary": "Описание",
+      "measureAddress": "Адрес замера",
+      "measureDate": "Дата замера",
+      "measureNote": "Заметка",
+      "materials": "Материалы",
+      "worker": "Исполнитель",
+      "client": "Клиент"
+    }
+  }
+}

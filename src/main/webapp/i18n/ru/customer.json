@@ -1,0 +1,31 @@
+{
+  "proceilApp": {
+    "customer": {
+      "home": {
+        "title": "Клиент",
+        "createLabel": "Создать нового клиента",
+        "createOrEditLabel": "Создать или отредактировать клиента"
+      },
+      "created": "Новый клиент создан с идентификатором {{ param }}",
+      "updated": "Клиент обновлен с идентификатором {{ param }}",
+      "deleted": "Клиент удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить клиента {{ id }}?"
+      },
+      "detail": {
+        "title": "Клиент"
+      },
+      "customerSummary": "Описание",
+      "firstname": "Имя",
+      "lastname": "Фамилия",
+      "middlename": "Отчество",
+      "birthDate": "Дата рождения",
+      "email": "Email",
+      "phone": "Телефон",
+      "address": "Адрес",
+      "feedback": "Отзыв",
+      "measurement": "Замер",
+      "order": "Заказ"
+    }
+  }
+}

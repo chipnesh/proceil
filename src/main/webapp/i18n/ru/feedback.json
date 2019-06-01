@@ -1,0 +1,25 @@
+{
+  "proceilApp": {
+    "feedback": {
+      "home": {
+        "title": "Отзывы",
+        "createLabel": "Создать новый отзыв",
+        "createOrEditLabel": "Создать или отредактировать отзыв"
+      },
+      "created": "Новый отзыв создан с идентификатором {{ param }}",
+      "updated": "Отзыв обновлен с идентификатором {{ param }}",
+      "deleted": "Отзыв удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить отзыв {{ id }}?"
+      },
+      "detail": {
+        "title": "Отзыв"
+      },
+      "caption": "Тема",
+      "email": "Email",
+      "text": "Текст",
+      "feedbackResponse": "Ответ",
+      "author": "Автор"
+    }
+  }
+}

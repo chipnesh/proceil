@@ -1,0 +1,24 @@
+{
+  "proceilApp": {
+    "service": {
+      "home": {
+        "title": "Услуги",
+        "createLabel": "Создать новую услугу",
+        "createOrEditLabel": "Создать или отредактировать услугу"
+      },
+      "created": "Новая услуга создан с идентификатором {{ param }}",
+      "updated": "Услуга обновлена с идентификатором {{ param }}",
+      "deleted": "Услуга удалена с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить услугу {{ id }}?"
+      },
+      "detail": {
+        "title": "Услуга"
+      },
+      "serviceName": "Название",
+      "serviceDescription": "Описание",
+      "servicePrice": "Цена",
+      "image": "Изображение"
+    }
+  }
+}

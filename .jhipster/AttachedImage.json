@@ -1,0 +1,39 @@
+{
+    "name": "AttachedImage",
+    "fields": [
+        {
+            "fieldName": "imageName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "imageFile",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "material",
+            "otherEntityName": "material",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "service",
+            "otherEntityName": "service",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190601131235",
+    "entityTableName": "attached_image",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "proceil"
+    ]
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity ServiceAvailability.
+    -->
+    <changeSet id="20190601131245-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="service_id"
+                                 baseTableName="service_availability"
+                                 constraintName="fk_service_availability_service_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="service"/>
+
+        <addForeignKeyConstraint baseColumnNames="provided_by_id"
+                                 baseTableName="service_availability"
+                                 constraintName="fk_service_availability_provided_by_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="zone"/>
+
+    </changeSet>
+</databaseChangeLog>

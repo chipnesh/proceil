@@ -1,0 +1,52 @@
+{
+    "name": "OrderService",
+    "fields": [
+        {
+            "fieldName": "serviceSummary",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "serviceDate",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "serviceQuota",
+            "otherEntityRelationshipName": "orderService",
+            "relationshipName": "quota",
+            "otherEntityField": "quotaStatus",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "employee",
+            "otherEntityRelationshipName": "orderService",
+            "relationshipName": "executor",
+            "otherEntityField": "employeeName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "customerOrder",
+            "otherEntityRelationshipName": "service",
+            "relationshipName": "order",
+            "otherEntityField": "orderSummary"
+        }
+    ],
+    "changelogDate": "20190601131253",
+    "entityTableName": "order_service",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "proceil"
+    ]
+}

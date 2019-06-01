@@ -1,0 +1,36 @@
+{
+    "name": "Material",
+    "fields": [
+        {
+            "fieldName": "materialName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "materialDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "materialPrice",
+            "fieldType": "BigDecimal"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "attachedImage",
+            "otherEntityRelationshipName": "material",
+            "relationshipName": "image"
+        }
+    ],
+    "changelogDate": "20190601131236",
+    "entityTableName": "material",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "proceil"
+    ]
+}

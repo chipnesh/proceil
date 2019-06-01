@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql, mariadb"/>
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131235_added_entity_AttachedImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131236_added_entity_Material.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131237_added_entity_Service.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131238_added_entity_MaterialRequest.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131239_added_entity_MaterialArrival.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131240_added_entity_Facility.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131241_added_entity_Zone.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131242_added_entity_MaterialReserve.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131243_added_entity_ServiceQuota.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131244_added_entity_MaterialAvailability.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131245_added_entity_ServiceAvailability.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131246_added_entity_Customer.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131247_added_entity_Feedback.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131248_added_entity_Employee.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131249_added_entity_MaterialMeasurement.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131250_added_entity_Measurement.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131251_added_entity_CustomerOrder.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131252_added_entity_OrderMaterial.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131253_added_entity_OrderService.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20190601131235_added_entity_constraints_AttachedImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131238_added_entity_constraints_MaterialRequest.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131239_added_entity_constraints_MaterialArrival.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131241_added_entity_constraints_Zone.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131242_added_entity_constraints_MaterialReserve.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131243_added_entity_constraints_ServiceQuota.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131244_added_entity_constraints_MaterialAvailability.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131245_added_entity_constraints_ServiceAvailability.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131247_added_entity_constraints_Feedback.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131249_added_entity_constraints_MaterialMeasurement.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131250_added_entity_constraints_Measurement.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131251_added_entity_constraints_CustomerOrder.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131252_added_entity_constraints_OrderMaterial.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190601131253_added_entity_constraints_OrderService.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>

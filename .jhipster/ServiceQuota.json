@@ -1,0 +1,42 @@
+{
+    "name": "ServiceQuota",
+    "fields": [
+        {
+            "fieldName": "dateFrom",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "dateTo",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "quotaStatus",
+            "fieldType": "ServiceQuotingStatus",
+            "fieldValues": "NEW,QUOTED,BUSY"
+        },
+        {
+            "fieldName": "quantityToQuote",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "service",
+            "otherEntityRelationshipName": "serviceQuota",
+            "relationshipName": "service",
+            "otherEntityField": "serviceName"
+        }
+    ],
+    "changelogDate": "20190601131243",
+    "entityTableName": "service_quota",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "proceil"
+    ]
+}
