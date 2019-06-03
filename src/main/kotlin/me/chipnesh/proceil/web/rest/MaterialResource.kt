@@ -137,6 +137,6 @@ class MaterialResource(
     }
 
     companion object {
-        private const val ENTITY_NAME = "material"
+        const val ENTITY_NAME = "material"
     }
 }

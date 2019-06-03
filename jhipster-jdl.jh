@@ -73,7 +73,7 @@ entity MaterialRequest {
 }
 
 enum MaterialRequestStatus {
-	NEW, IN_PROGRESS, FINISHED
+	NEW, FINISHED
 }
 
 entity MaterialArrival {

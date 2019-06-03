@@ -1,23 +1,21 @@
 package me.chipnesh.proceil.service
 
 import me.chipnesh.proceil.domain.MaterialArrivalModel
+import me.chipnesh.proceil.extensions.format
 import me.chipnesh.proceil.repository.MaterialArrivalRepository
 import me.chipnesh.proceil.service.dto.MaterialArrivalValueObject
 import me.chipnesh.proceil.service.mapper.MaterialArrivalMapper
 import org.slf4j.LoggerFactory
-
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-
-import java.util.Optional
+import java.util.*
 
 /**
  * Service Implementation for managing [MaterialArrivalModel].
  */
 @Service
-@Transactional
 class MaterialArrivalService(
     val materialArrivalRepository: MaterialArrivalRepository,
     val materialArrivalMapper: MaterialArrivalMapper
@@ -36,6 +34,13 @@ class MaterialArrivalService(
 
         var materialArrivalModel = materialArrivalMapper.toEntity(materialArrivalValueObject)
         materialArrivalModel = materialArrivalRepository.save(materialArrivalModel)
+        val arrivalModel = materialArrivalRepository.findJoinedById(materialArrivalModel.id!!)
+        val materialName = arrivalModel.request?.material?.materialName
+        val facilityName = arrivalModel.request?.requester?.facilityName
+        materialArrivalModel.arrivalSummary = with(materialArrivalModel) {
+            "[$id] ${arrivalDate.format()} - $materialName ($arrivedQuantity) - $facilityName"
+        }
+        materialArrivalRepository.save(materialArrivalModel)
         return materialArrivalMapper.toDto(materialArrivalModel)
     }
 

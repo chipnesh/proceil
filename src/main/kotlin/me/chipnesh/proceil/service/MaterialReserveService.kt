@@ -1,7 +1,12 @@
 package me.chipnesh.proceil.service
 
+import io.github.jhipster.service.filter.IntegerFilter
+import io.github.jhipster.service.filter.LongFilter
 import me.chipnesh.proceil.domain.MaterialReserveModel
+import me.chipnesh.proceil.domain.enumeration.MaterialReserveStatus
+import me.chipnesh.proceil.domain.enumeration.MaterialReserveStatus.*
 import me.chipnesh.proceil.repository.MaterialReserveRepository
+import me.chipnesh.proceil.service.dto.MaterialAvailabilityCriteria
 import me.chipnesh.proceil.service.dto.MaterialReserveValueObject
 import me.chipnesh.proceil.service.mapper.MaterialReserveMapper
 import org.slf4j.LoggerFactory
@@ -20,7 +25,9 @@ import java.util.Optional
 @Transactional
 class MaterialReserveService(
     val materialReserveRepository: MaterialReserveRepository,
-    val materialReserveMapper: MaterialReserveMapper
+    val materialReserveMapper: MaterialReserveMapper,
+    val materialAvailabilityQueryService: MaterialAvailabilityQueryService,
+    val materialAvailabilityService: MaterialAvailabilityService
 ) {
 
     private val log = LoggerFactory.getLogger(MaterialReserveService::class.java)
@@ -34,8 +41,30 @@ class MaterialReserveService(
     fun save(materialReserveValueObject: MaterialReserveValueObject): MaterialReserveValueObject {
         log.debug("Request to save MaterialReserve : {}", materialReserveValueObject)
 
+        if (materialReserveValueObject.id == null) {
+            materialReserveValueObject.reserveStatus = NEW
+        }
+
         var materialReserveModel = materialReserveMapper.toEntity(materialReserveValueObject)
         materialReserveModel = materialReserveRepository.save(materialReserveModel)
+
+        materialReserveModel.material?.id?.let { id ->
+            val query = MaterialAvailabilityCriteria().apply {
+                materialId = LongFilter().apply { equals = id }
+                remainingQuantity = IntegerFilter().apply { greaterOrEqualThan = materialReserveModel.quantityToReserve }
+            }
+            materialAvailabilityQueryService.findByCriteria(query).firstOrNull()?.let { available ->
+                val remaining = requireNotNull(available.remainingQuantity)
+                val toReserve = requireNotNull(materialReserveModel.quantityToReserve)
+                available.remainingQuantity = remaining - toReserve
+                materialReserveModel.reserveStatus = RESERVED
+                materialAvailabilityService.save(available)
+
+            } ?: run {
+                materialReserveModel.reserveStatus = OUT_OF_STOCK
+            }
+            materialReserveRepository.save(materialReserveModel)
+        }
         return materialReserveMapper.toDto(materialReserveModel)
     }
 
@@ -72,6 +101,22 @@ class MaterialReserveService(
      */
     fun delete(id: Long) {
         log.debug("Request to delete MaterialReserve : {}", id)
+        materialReserveRepository.findById(id).ifPresent { materialReserveModel ->
+            materialReserveModel.material?.id?.let { id ->
+                val query = MaterialAvailabilityCriteria().apply {
+                    materialId = LongFilter().apply { equals = id }
+                }
+                materialAvailabilityQueryService.findByCriteria(query).firstOrNull()?.let {
+                    val remaining = requireNotNull(it.remainingQuantity)
+                    val toReserve = requireNotNull(materialReserveModel.quantityToReserve)
+                    it.remainingQuantity = remaining + toReserve
+                    materialAvailabilityService.save(it)
+
+                    materialReserveModel.reserveStatus = RESERVED
+                    materialReserveRepository.save(materialReserveModel)
+                }
+            }
+        }
 
         materialReserveRepository.deleteById(id)
     }

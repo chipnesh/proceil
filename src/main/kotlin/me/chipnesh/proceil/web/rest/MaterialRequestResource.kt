@@ -56,6 +56,9 @@ class MaterialRequestResource(
         if (materialRequestValueObject.id != null) {
             throw BadRequestAlertException("A new materialRequest cannot already have an ID", ENTITY_NAME, "idexists")
         }
+        if (materialRequestValueObject.materialId == null) {
+            throw BadRequestAlertException("Invalid materialId", MaterialResource.ENTITY_NAME, "idnull")
+        }
         val result = materialRequestService.save(materialRequestValueObject)
         return ResponseEntity.created(URI("/api/material-requests/" + result.id))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.id.toString()))
@@ -137,6 +140,6 @@ class MaterialRequestResource(
     }
 
     companion object {
-        private const val ENTITY_NAME = "materialRequest"
+        const val ENTITY_NAME = "materialRequest"
     }
 }

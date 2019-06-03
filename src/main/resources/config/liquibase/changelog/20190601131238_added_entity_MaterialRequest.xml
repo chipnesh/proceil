@@ -47,9 +47,10 @@
                 <constraints nullable="true" />
             </column>
             <column name="requester_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_material_request_requester_id" />
-            </column>            <column name="material_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_material_request_material_id" />
+                <constraints nullable="true" />
+            </column>
+            <column name="material_id" type="bigint">
+                <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>

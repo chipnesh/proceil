@@ -123,10 +123,10 @@ export class MaterialRequest extends React.Component<IMaterialRequestProps, IMat
                   </td>
                   <td>{materialRequest.requestSummary}</td>
                   <td>
-                    <TextFormat type="date" value={materialRequest.createdDate} format={APP_DATE_FORMAT} />
+                    <TextFormat blankOnInvalid type="date" value={materialRequest.createdDate} format={APP_DATE_FORMAT} />
                   </td>
                   <td>
-                    <TextFormat type="date" value={materialRequest.closedDate} format={APP_DATE_FORMAT} />
+                    <TextFormat blankOnInvalid type="date" value={materialRequest.closedDate} format={APP_DATE_FORMAT} />
                   </td>
                   <td>{materialRequest.requestNote}</td>
                   <td>{materialRequest.requestPriority}</td>

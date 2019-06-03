@@ -103,12 +103,6 @@ export class MaterialAvailabilityUpdate extends React.Component<IMaterialAvailab
                   </AvGroup>
                 ) : null}
                 <AvGroup>
-                  <Label id="availabilitySummaryLabel" for="material-availability-availabilitySummary">
-                    <Translate contentKey="proceilApp.materialAvailability.availabilitySummary">Availability Summary</Translate>
-                  </Label>
-                  <AvField id="material-availability-availabilitySummary" type="text" name="availabilitySummary" />
-                </AvGroup>
-                <AvGroup>
                   <Label id="remainingQuantityLabel" for="material-availability-remainingQuantity">
                     <Translate contentKey="proceilApp.materialAvailability.remainingQuantity">Remaining Quantity</Translate>
                   </Label>

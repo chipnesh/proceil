@@ -109,7 +109,7 @@ export class MaterialArrival extends React.Component<IMaterialArrivalProps, IMat
                   </td>
                   <td>{materialArrival.arrivalSummary}</td>
                   <td>
-                    <TextFormat type="date" value={materialArrival.arrivalDate} format={APP_DATE_FORMAT} />
+                    <TextFormat blankOnInvalid type="date" value={materialArrival.arrivalDate} format={APP_DATE_FORMAT} />
                   </td>
                   <td>{materialArrival.arrivalNote}</td>
                   <td>{materialArrival.arrivedQuantity}</td>

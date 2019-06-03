@@ -54,14 +54,6 @@ export class AttachedImageDetail extends React.Component<IAttachedImageDetailPro
                 </div>
               ) : null}
             </dd>
-            <dt>
-              <Translate contentKey="proceilApp.attachedImage.material">Material</Translate>
-            </dt>
-            <dd>{attachedImageEntity.materialId ? attachedImageEntity.materialId : ''}</dd>
-            <dt>
-              <Translate contentKey="proceilApp.attachedImage.service">Service</Translate>
-            </dt>
-            <dd>{attachedImageEntity.serviceId ? attachedImageEntity.serviceId : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/attached-image" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}

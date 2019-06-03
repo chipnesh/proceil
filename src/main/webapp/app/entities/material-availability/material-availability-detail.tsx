@@ -46,7 +46,11 @@ export class MaterialAvailabilityDetail extends React.Component<IMaterialAvailab
                 <Translate contentKey="proceilApp.materialAvailability.measureUnit">Measure Unit</Translate>
               </span>
             </dt>
-            <dd>{materialAvailabilityEntity.measureUnit}</dd>
+            <dd>
+              <Translate contentKey={'proceilApp.MeasureUnit.' + materialAvailabilityEntity.measureUnit}>
+                {materialAvailabilityEntity.measureUnit}
+              </Translate>
+            </dd>
             <dt>
               <Translate contentKey="proceilApp.materialAvailability.material">Material</Translate>
             </dt>

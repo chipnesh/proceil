@@ -62,9 +62,6 @@ export class MaterialRequestUpdate extends React.Component<IMaterialRequestUpdat
   };
 
   saveEntity = (event, errors, values) => {
-    values.createdDate = convertDateTimeToServer(values.createdDate);
-    values.closedDate = convertDateTimeToServer(values.closedDate);
-
     if (errors.length === 0) {
       const { materialRequestEntity } = this.props;
       const entity = {
@@ -113,78 +110,62 @@ export class MaterialRequestUpdate extends React.Component<IMaterialRequestUpdat
                     <AvInput id="material-request-id" type="text" className="form-control" name="id" required readOnly />
                   </AvGroup>
                 ) : null}
+
                 <AvGroup>
-                  <Label id="requestSummaryLabel" for="material-request-requestSummary">
-                    <Translate contentKey="proceilApp.materialRequest.requestSummary">Request Summary</Translate>
+                  <Label for="material-request-requester">
+                    <Translate contentKey="proceilApp.materialRequest.requester">Requester</Translate>
                   </Label>
-                  <AvField id="material-request-requestSummary" type="text" name="requestSummary" />
+                  <AvInput id="material-request-requester" type="select" className="form-control" name="requesterId">
+                    <option value="" key="0" />
+                    {facilities
+                      ? facilities.map(otherEntity => (
+                        <option value={otherEntity.id} key={otherEntity.id}>
+                          {otherEntity.facilityName}
+                        </option>
+                      ))
+                      : null}
+                  </AvInput>
                 </AvGroup>
-                <AvGroup>
-                  <Label id="createdDateLabel" for="material-request-createdDate">
-                    <Translate contentKey="proceilApp.materialRequest.createdDate">Created Date</Translate>
-                  </Label>
-                  <AvInput
-                    id="material-request-createdDate"
-                    type="datetime-local"
-                    className="form-control"
-                    name="createdDate"
-                    placeholder={'YYYY-MM-DD HH:mm'}
-                    value={isNew ? null : convertDateTimeFromServer(this.props.materialRequestEntity.createdDate)}
-                  />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="closedDateLabel" for="material-request-closedDate">
-                    <Translate contentKey="proceilApp.materialRequest.closedDate">Closed Date</Translate>
-                  </Label>
-                  <AvInput
-                    id="material-request-closedDate"
-                    type="datetime-local"
-                    className="form-control"
-                    name="closedDate"
-                    placeholder={'YYYY-MM-DD HH:mm'}
-                    value={isNew ? null : convertDateTimeFromServer(this.props.materialRequestEntity.closedDate)}
-                  />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="requestNoteLabel" for="material-request-requestNote">
-                    <Translate contentKey="proceilApp.materialRequest.requestNote">Request Note</Translate>
-                  </Label>
-                  <AvInput id="material-request-requestNote" type="textarea" name="requestNote" />
-                </AvGroup>
+
                 <AvGroup>
                   <Label id="requestPriorityLabel" for="material-request-requestPriority">
                     <Translate contentKey="proceilApp.materialRequest.requestPriority">Request Priority</Translate>
                   </Label>
-                  <AvField id="material-request-requestPriority" type="string" className="form-control" name="requestPriority" />
+                  <AvField id="material-request-requestPriority"
+                           type="select"
+                           className="form-control"
+                           name="requestPriority">
+                    <option>5</option>
+                    <option>4</option>
+                    <option>3</option>
+                    <option>2</option>
+                    <option>1</option>
+                  </AvField>
                 </AvGroup>
+
                 <AvGroup>
-                  <Label id="requestStatusLabel" for="material-request-requestStatus">
-                    <Translate contentKey="proceilApp.materialRequest.requestStatus">Request Status</Translate>
+                  <Label for="material-request-material">
+                    <Translate contentKey="proceilApp.materialRequest.material">Material</Translate>
                   </Label>
-                  <AvInput
-                    id="material-request-requestStatus"
-                    type="select"
-                    className="form-control"
-                    name="requestStatus"
-                    value={(!isNew && materialRequestEntity.requestStatus) || 'NEW'}
-                  >
-                    <option value="NEW">
-                      {translate('proceilApp.MaterialRequestStatus.NEW')}
-                    </option>
-                    <option value="IN_PROGRESS">
-                      {translate('proceilApp.MaterialRequestStatus.IN_PROGRESS')}
-                    </option>
-                    <option value="FINISHED">
-                      {translate('proceilApp.MaterialRequestStatus.FINISHED')}
-                    </option>
+                  <AvInput id="material-request-material" type="select" className="form-control" name="materialId">
+                    <option value="" key="0" />
+                    {materials
+                      ? materials.map(otherEntity => (
+                        <option value={otherEntity.id} key={otherEntity.id}>
+                          {otherEntity.materialName}
+                        </option>
+                      ))
+                      : null}
                   </AvInput>
                 </AvGroup>
+
                 <AvGroup>
                   <Label id="requestedQuantityLabel" for="material-request-requestedQuantity">
                     <Translate contentKey="proceilApp.materialRequest.requestedQuantity">Requested Quantity</Translate>
                   </Label>
                   <AvField id="material-request-requestedQuantity" type="string" className="form-control" name="requestedQuantity" />
                 </AvGroup>
+
                 <AvGroup>
                   <Label id="measureUnitLabel" for="material-request-measureUnit">
                     <Translate contentKey="proceilApp.materialRequest.measureUnit">Measure Unit</Translate>
@@ -219,36 +200,14 @@ export class MaterialRequestUpdate extends React.Component<IMaterialRequestUpdat
                     </option>
                   </AvInput>
                 </AvGroup>
+
                 <AvGroup>
-                  <Label for="material-request-requester">
-                    <Translate contentKey="proceilApp.materialRequest.requester">Requester</Translate>
+                  <Label id="requestNoteLabel" for="material-request-requestNote">
+                    <Translate contentKey="proceilApp.materialRequest.requestNote">Request Note</Translate>
                   </Label>
-                  <AvInput id="material-request-requester" type="select" className="form-control" name="requesterId">
-                    <option value="" key="0" />
-                    {facilities
-                      ? facilities.map(otherEntity => (
-                          <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.facilityName}
-                          </option>
-                        ))
-                      : null}
-                  </AvInput>
+                  <AvInput id="material-request-requestNote" type="textarea" name="requestNote" />
                 </AvGroup>
-                <AvGroup>
-                  <Label for="material-request-material">
-                    <Translate contentKey="proceilApp.materialRequest.material">Material</Translate>
-                  </Label>
-                  <AvInput id="material-request-material" type="select" className="form-control" name="materialId">
-                    <option value="" key="0" />
-                    {materials
-                      ? materials.map(otherEntity => (
-                          <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.materialName}
-                          </option>
-                        ))
-                      : null}
-                  </AvInput>
-                </AvGroup>
+
                 <Button tag={Link} id="cancel-save" to="/entity/material-request" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />
                   &nbsp;

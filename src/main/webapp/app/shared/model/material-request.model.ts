@@ -2,7 +2,6 @@ import { Moment } from 'moment';
 
 export const enum MaterialRequestStatus {
   NEW = 'NEW',
-  IN_PROGRESS = 'IN_PROGRESS',
   FINISHED = 'FINISHED'
 }
 

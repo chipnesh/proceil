@@ -40,7 +40,7 @@ export class MaterialArrivalDetail extends React.Component<IMaterialArrivalDetai
               </span>
             </dt>
             <dd>
-              <TextFormat value={materialArrivalEntity.arrivalDate} type="date" format={APP_DATE_FORMAT} />
+              <TextFormat blankOnInvalid value={materialArrivalEntity.arrivalDate} type="date" format={APP_DATE_FORMAT} />
             </dd>
             <dt>
               <span id="arrivalNote">
@@ -59,7 +59,11 @@ export class MaterialArrivalDetail extends React.Component<IMaterialArrivalDetai
                 <Translate contentKey="proceilApp.materialArrival.measureUnit">Measure Unit</Translate>
               </span>
             </dt>
-            <dd>{materialArrivalEntity.measureUnit}</dd>
+            <dd>
+              <Translate contentKey={'proceilApp.MeasureUnit.' + materialArrivalEntity.measureUnit}>
+                {materialArrivalEntity.measureUnit}
+              </Translate>
+            </dd>
             <dt>
               <Translate contentKey="proceilApp.materialArrival.request">Request</Translate>
             </dt>

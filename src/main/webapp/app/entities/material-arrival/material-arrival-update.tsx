@@ -57,7 +57,6 @@ export class MaterialArrivalUpdate extends React.Component<IMaterialArrivalUpdat
   };
 
   saveEntity = (event, errors, values) => {
-    values.arrivalDate = convertDateTimeToServer(values.arrivalDate);
 
     if (errors.length === 0) {
       const { materialArrivalEntity } = this.props;
@@ -107,31 +106,23 @@ export class MaterialArrivalUpdate extends React.Component<IMaterialArrivalUpdat
                     <AvInput id="material-arrival-id" type="text" className="form-control" name="id" required readOnly />
                   </AvGroup>
                 ) : null}
+
                 <AvGroup>
-                  <Label id="arrivalSummaryLabel" for="material-arrival-arrivalSummary">
-                    <Translate contentKey="proceilApp.materialArrival.arrivalSummary">Arrival Summary</Translate>
+                  <Label for="material-arrival-request">
+                    <Translate contentKey="proceilApp.materialArrival.request">Request</Translate>
                   </Label>
-                  <AvField id="material-arrival-arrivalSummary" type="text" name="arrivalSummary" />
+                  <AvInput id="material-arrival-request" type="select" className="form-control" name="requestId">
+                    <option value="" key="0" />
+                    {materialRequests
+                      ? materialRequests.map(otherEntity => (
+                        <option value={otherEntity.id} key={otherEntity.id}>
+                          {otherEntity.requestSummary}
+                        </option>
+                      ))
+                      : null}
+                  </AvInput>
                 </AvGroup>
-                <AvGroup>
-                  <Label id="arrivalDateLabel" for="material-arrival-arrivalDate">
-                    <Translate contentKey="proceilApp.materialArrival.arrivalDate">Arrival Date</Translate>
-                  </Label>
-                  <AvInput
-                    id="material-arrival-arrivalDate"
-                    type="datetime-local"
-                    className="form-control"
-                    name="arrivalDate"
-                    placeholder={'YYYY-MM-DD HH:mm'}
-                    value={isNew ? null : convertDateTimeFromServer(this.props.materialArrivalEntity.arrivalDate)}
-                  />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="arrivalNoteLabel" for="material-arrival-arrivalNote">
-                    <Translate contentKey="proceilApp.materialArrival.arrivalNote">Arrival Note</Translate>
-                  </Label>
-                  <AvInput id="material-arrival-arrivalNote" type="textarea" name="arrivalNote" />
-                </AvGroup>
+
                 <AvGroup>
                   <Label id="arrivedQuantityLabel" for="material-arrival-arrivedQuantity">
                     <Translate contentKey="proceilApp.materialArrival.arrivedQuantity">Arrived Quantity</Translate>
@@ -172,21 +163,14 @@ export class MaterialArrivalUpdate extends React.Component<IMaterialArrivalUpdat
                     </option>
                   </AvInput>
                 </AvGroup>
+
                 <AvGroup>
-                  <Label for="material-arrival-request">
-                    <Translate contentKey="proceilApp.materialArrival.request">Request</Translate>
+                  <Label id="arrivalNoteLabel" for="material-arrival-arrivalNote">
+                    <Translate contentKey="proceilApp.materialArrival.arrivalNote">Arrival Note</Translate>
                   </Label>
-                  <AvInput id="material-arrival-request" type="select" className="form-control" name="requestId">
-                    <option value="" key="0" />
-                    {materialRequests
-                      ? materialRequests.map(otherEntity => (
-                          <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.requestSummary}
-                          </option>
-                        ))
-                      : null}
-                  </AvInput>
+                  <AvInput id="material-arrival-arrivalNote" type="textarea" name="arrivalNote" />
                 </AvGroup>
+
                 <Button tag={Link} id="cancel-save" to="/entity/material-arrival" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />
                   &nbsp;

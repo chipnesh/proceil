@@ -82,12 +82,6 @@ export class AttachedImage extends React.Component<IAttachedImageProps, IAttache
                 <th className="hand" onClick={this.sort('imageFile')}>
                   <Translate contentKey="proceilApp.attachedImage.imageFile">Image File</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
-                <th>
-                  <Translate contentKey="proceilApp.attachedImage.material">Material</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="proceilApp.attachedImage.service">Service</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
                 <th />
               </tr>
             </thead>
@@ -116,10 +110,6 @@ export class AttachedImage extends React.Component<IAttachedImageProps, IAttache
                       </div>
                     ) : null}
                   </td>
-                  <td>
-                    {attachedImage.materialId ? <Link to={`material/${attachedImage.materialId}`}>{attachedImage.materialId}</Link> : ''}
-                  </td>
-                  <td>{attachedImage.serviceId ? <Link to={`service/${attachedImage.serviceId}`}>{attachedImage.serviceId}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${attachedImage.id}`} color="info" size="sm">

@@ -1,23 +1,22 @@
 package me.chipnesh.proceil.service
 
 import me.chipnesh.proceil.domain.MaterialRequestModel
+import me.chipnesh.proceil.domain.enumeration.MaterialRequestStatus
+import me.chipnesh.proceil.extensions.format
 import me.chipnesh.proceil.repository.MaterialRequestRepository
 import me.chipnesh.proceil.service.dto.MaterialRequestValueObject
 import me.chipnesh.proceil.service.mapper.MaterialRequestMapper
 import org.slf4j.LoggerFactory
-
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-
-import java.util.Optional
+import java.util.*
 
 /**
  * Service Implementation for managing [MaterialRequestModel].
  */
 @Service
-@Transactional
 class MaterialRequestService(
     val materialRequestRepository: MaterialRequestRepository,
     val materialRequestMapper: MaterialRequestMapper
@@ -33,9 +32,20 @@ class MaterialRequestService(
      */
     fun save(materialRequestValueObject: MaterialRequestValueObject): MaterialRequestValueObject {
         log.debug("Request to save MaterialRequest : {}", materialRequestValueObject)
+        if (materialRequestValueObject.id == null) {
+            materialRequestValueObject.requestStatus = MaterialRequestStatus.NEW
+        }
 
-        var materialRequestModel = materialRequestMapper.toEntity(materialRequestValueObject)
-        materialRequestModel = materialRequestRepository.save(materialRequestModel)
+        val materialRequestModel = materialRequestRepository.save(
+            materialRequestMapper.toEntity(materialRequestValueObject)
+        )
+        val requestModel = materialRequestRepository.findJoinedById(materialRequestModel.id!!)
+        materialRequestModel.requestSummary = with(requestModel) {
+            "[${id}] ${createdDate.format()} - " +
+                "${material?.materialName} ($requestedQuantity) - " +
+                "${requester?.facilityName}"
+        }
+        materialRequestRepository.save(materialRequestModel)
         return materialRequestMapper.toDto(materialRequestModel)
     }
 

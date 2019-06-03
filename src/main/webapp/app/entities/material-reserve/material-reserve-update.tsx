@@ -49,7 +49,6 @@ export class MaterialReserveUpdate extends React.Component<IMaterialReserveUpdat
   }
 
   saveEntity = (event, errors, values) => {
-    values.reserveDate = convertDateTimeToServer(values.reserveDate);
 
     if (errors.length === 0) {
       const { materialReserveEntity } = this.props;
@@ -97,41 +96,6 @@ export class MaterialReserveUpdate extends React.Component<IMaterialReserveUpdat
                     <AvInput id="material-reserve-id" type="text" className="form-control" name="id" required readOnly />
                   </AvGroup>
                 ) : null}
-                <AvGroup>
-                  <Label id="reserveDateLabel" for="material-reserve-reserveDate">
-                    <Translate contentKey="proceilApp.materialReserve.reserveDate">Reserve Date</Translate>
-                  </Label>
-                  <AvInput
-                    id="material-reserve-reserveDate"
-                    type="datetime-local"
-                    className="form-control"
-                    name="reserveDate"
-                    placeholder={'YYYY-MM-DD HH:mm'}
-                    value={isNew ? null : convertDateTimeFromServer(this.props.materialReserveEntity.reserveDate)}
-                  />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="reserveStatusLabel" for="material-reserve-reserveStatus">
-                    <Translate contentKey="proceilApp.materialReserve.reserveStatus">Reserve Status</Translate>
-                  </Label>
-                  <AvInput
-                    id="material-reserve-reserveStatus"
-                    type="select"
-                    className="form-control"
-                    name="reserveStatus"
-                    value={(!isNew && materialReserveEntity.reserveStatus) || 'NEW'}
-                  >
-                    <option value="NEW">
-                      {translate('proceilApp.MaterialReserveStatus.NEW')}
-                    </option>
-                    <option value="RESERVED">
-                      {translate('proceilApp.MaterialReserveStatus.RESERVED')}
-                    </option>
-                    <option value="OUT_OF_STOCK">
-                      {translate('proceilApp.MaterialReserveStatus.OUT_OF_STOCK')}
-                    </option>
-                  </AvInput>
-                </AvGroup>
                 <AvGroup>
                   <Label id="quantityToReserveLabel" for="material-reserve-quantityToReserve">
                     <Translate contentKey="proceilApp.materialReserve.quantityToReserve">Quantity To Reserve</Translate>

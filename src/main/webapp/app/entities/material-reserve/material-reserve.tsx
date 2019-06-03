@@ -104,7 +104,7 @@ export class MaterialReserve extends React.Component<IMaterialReserveProps, IMat
                     </Button>
                   </td>
                   <td>
-                    <TextFormat type="date" value={materialReserve.reserveDate} format={APP_DATE_FORMAT} />
+                    <TextFormat blankOnInvalid type="date" value={materialReserve.reserveDate} format={APP_DATE_FORMAT} />
                   </td>
                   <td>
                     <Translate contentKey={`proceilApp.MaterialReserveStatus.${materialReserve.reserveStatus}`} />

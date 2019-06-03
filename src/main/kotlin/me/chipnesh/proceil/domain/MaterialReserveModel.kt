@@ -4,17 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import org.hibernate.annotations.Cache
 import org.hibernate.annotations.CacheConcurrencyStrategy
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.EnumType
-import javax.persistence.Enumerated
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.ManyToOne
-import javax.persistence.SequenceGenerator
-import javax.persistence.Table
-
 import java.io.Serializable
 import java.time.Instant
 import java.util.Objects
@@ -22,6 +11,9 @@ import java.util.Objects
 import me.chipnesh.proceil.domain.enumeration.MaterialReserveStatus
 
 import me.chipnesh.proceil.domain.enumeration.MeasureUnit
+import org.springframework.data.annotation.CreatedDate
+import org.springframework.data.jpa.domain.support.AuditingEntityListener
+import javax.persistence.*
 
 /**
  * A MaterialReserveModel.
@@ -29,6 +21,7 @@ import me.chipnesh.proceil.domain.enumeration.MeasureUnit
 @Entity
 @Table(name = "material_reserve")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@EntityListeners(AuditingEntityListener::class)
 class MaterialReserveModel(
 
     @Id
@@ -37,6 +30,7 @@ class MaterialReserveModel(
     var id: Long? = null,
 
     @Column(name = "reserve_date")
+    @CreatedDate
     var reserveDate: Instant? = null,
 
     @Enumerated(EnumType.STRING)

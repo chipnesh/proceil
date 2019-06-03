@@ -739,7 +739,7 @@ class MaterialRequestResourceIT {
         private const val UPDATED_REQUEST_PRIORITY: Int = 2
 
         private val DEFAULT_REQUEST_STATUS: MaterialRequestStatus = MaterialRequestStatus.NEW
-        private val UPDATED_REQUEST_STATUS: MaterialRequestStatus = MaterialRequestStatus.IN_PROGRESS
+        private val UPDATED_REQUEST_STATUS: MaterialRequestStatus = MaterialRequestStatus.FINISHED
 
         private const val DEFAULT_REQUESTED_QUANTITY: Int = 1
         private const val UPDATED_REQUESTED_QUANTITY: Int = 2

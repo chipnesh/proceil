@@ -40,7 +40,7 @@ export class MaterialRequestDetail extends React.Component<IMaterialRequestDetai
               </span>
             </dt>
             <dd>
-              <TextFormat value={materialRequestEntity.createdDate} type="date" format={APP_DATE_FORMAT} />
+              <TextFormat blankOnInvalid value={materialRequestEntity.createdDate} type="date" format={APP_DATE_FORMAT} />
             </dd>
             <dt>
               <span id="closedDate">
@@ -48,7 +48,7 @@ export class MaterialRequestDetail extends React.Component<IMaterialRequestDetai
               </span>
             </dt>
             <dd>
-              <TextFormat value={materialRequestEntity.closedDate} type="date" format={APP_DATE_FORMAT} />
+              <TextFormat blankOnInvalid value={materialRequestEntity.closedDate} type="date" format={APP_DATE_FORMAT} />
             </dd>
             <dt>
               <span id="requestNote">
@@ -67,7 +67,11 @@ export class MaterialRequestDetail extends React.Component<IMaterialRequestDetai
                 <Translate contentKey="proceilApp.materialRequest.requestStatus">Request Status</Translate>
               </span>
             </dt>
-            <dd>{materialRequestEntity.requestStatus}</dd>
+            <dd>
+              <Translate contentKey={'proceilApp.MaterialRequestStatus.' + materialRequestEntity.requestStatus}>
+                {materialRequestEntity.requestStatus}
+              </Translate>
+            </dd>
             <dt>
               <span id="requestedQuantity">
                 <Translate contentKey="proceilApp.materialRequest.requestedQuantity">Requested Quantity</Translate>
@@ -79,7 +83,11 @@ export class MaterialRequestDetail extends React.Component<IMaterialRequestDetai
                 <Translate contentKey="proceilApp.materialRequest.measureUnit">Measure Unit</Translate>
               </span>
             </dt>
-            <dd>{materialRequestEntity.measureUnit}</dd>
+            <dd>
+            <Translate contentKey={'proceilApp.MeasureUnit.' + materialRequestEntity.measureUnit}>
+              {materialRequestEntity.measureUnit}
+            </Translate>
+            </dd>
             <dt>
               <Translate contentKey="proceilApp.materialRequest.requester">Requester</Translate>
             </dt>

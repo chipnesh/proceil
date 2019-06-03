@@ -1,26 +1,14 @@
 package me.chipnesh.proceil.domain
 
+import me.chipnesh.proceil.domain.enumeration.MeasureUnit
 import org.hibernate.annotations.Cache
 import org.hibernate.annotations.CacheConcurrencyStrategy
-
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.EnumType
-import javax.persistence.Enumerated
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.Lob
-import javax.persistence.JoinColumn
-import javax.persistence.OneToOne
-import javax.persistence.SequenceGenerator
-import javax.persistence.Table
-
+import org.springframework.data.annotation.CreatedDate
+import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.io.Serializable
 import java.time.Instant
-import java.util.Objects
-
-import me.chipnesh.proceil.domain.enumeration.MeasureUnit
+import java.util.*
+import javax.persistence.*
 
 /**
  * A MaterialArrivalModel.
@@ -28,6 +16,7 @@ import me.chipnesh.proceil.domain.enumeration.MeasureUnit
 @Entity
 @Table(name = "material_arrival")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@EntityListeners(AuditingEntityListener::class)
 class MaterialArrivalModel(
 
     @Id
@@ -39,6 +28,7 @@ class MaterialArrivalModel(
     var arrivalSummary: String? = null,
 
     @Column(name = "arrival_date")
+    @CreatedDate
     var arrivalDate: Instant? = null,
 
     @Lob
@@ -52,8 +42,8 @@ class MaterialArrivalModel(
     @Column(name = "measure_unit")
     var measureUnit: MeasureUnit? = null,
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn
     var request: MaterialRequestModel? = null
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

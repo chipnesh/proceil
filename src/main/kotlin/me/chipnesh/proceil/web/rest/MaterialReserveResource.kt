@@ -56,6 +56,9 @@ class MaterialReserveResource(
         if (materialReserveValueObject.id != null) {
             throw BadRequestAlertException("A new materialReserve cannot already have an ID", ENTITY_NAME, "idexists")
         }
+        if (materialReserveValueObject.quantityToReserve == null) {
+            throw BadRequestAlertException("Bad quantityToReserve", ENTITY_NAME, "quantityToReservenull")
+        }
         val result = materialReserveService.save(materialReserveValueObject)
         return ResponseEntity.created(URI("/api/material-reserves/" + result.id))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.id.toString()))

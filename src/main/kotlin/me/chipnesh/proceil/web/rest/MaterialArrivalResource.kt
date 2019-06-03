@@ -56,6 +56,12 @@ class MaterialArrivalResource(
         if (materialArrivalValueObject.id != null) {
             throw BadRequestAlertException("A new materialArrival cannot already have an ID", ENTITY_NAME, "idexists")
         }
+        if (materialArrivalValueObject.requestId == null) {
+            throw BadRequestAlertException("Invalid requestId",
+                MaterialRequestResource.ENTITY_NAME,
+                "idnull"
+            )
+        }
         val result = materialArrivalService.save(materialArrivalValueObject)
         return ResponseEntity.created(URI("/api/material-arrivals/" + result.id))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.id.toString()))

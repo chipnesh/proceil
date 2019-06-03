@@ -8,10 +8,6 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, setFileData, o
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
-import { IMaterial } from 'app/shared/model/material.model';
-import { getEntities as getMaterials } from 'app/entities/material/material.reducer';
-import { IService } from 'app/shared/model/service.model';
-import { getEntities as getServices } from 'app/entities/service/service.reducer';
 import { getEntity, updateEntity, createEntity, setBlob, reset } from './attached-image.reducer';
 import { IAttachedImage } from 'app/shared/model/attached-image.model';
 // tslint:disable-next-line:no-unused-variable
@@ -22,16 +18,12 @@ export interface IAttachedImageUpdateProps extends StateProps, DispatchProps, Ro
 
 export interface IAttachedImageUpdateState {
   isNew: boolean;
-  materialId: string;
-  serviceId: string;
 }
 
 export class AttachedImageUpdate extends React.Component<IAttachedImageUpdateProps, IAttachedImageUpdateState> {
   constructor(props) {
     super(props);
     this.state = {
-      materialId: '0',
-      serviceId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -48,9 +40,6 @@ export class AttachedImageUpdate extends React.Component<IAttachedImageUpdatePro
     } else {
       this.props.getEntity(this.props.match.params.id);
     }
-
-    this.props.getMaterials();
-    this.props.getServices();
   }
 
   onBlobChange = (isAnImage, name) => event => {
@@ -82,7 +71,7 @@ export class AttachedImageUpdate extends React.Component<IAttachedImageUpdatePro
   };
 
   render() {
-    const { attachedImageEntity, materials, services, loading, updating } = this.props;
+    const { attachedImageEntity, loading, updating } = this.props;
     const { isNew } = this.state;
 
     const { imageFile, imageFileContentType } = attachedImageEntity;
@@ -146,36 +135,6 @@ export class AttachedImageUpdate extends React.Component<IAttachedImageUpdatePro
                     <AvInput type="hidden" name="imageFile" value={imageFile} />
                   </AvGroup>
                 </AvGroup>
-                <AvGroup>
-                  <Label for="attached-image-material">
-                    <Translate contentKey="proceilApp.attachedImage.material">Material</Translate>
-                  </Label>
-                  <AvInput id="attached-image-material" type="select" className="form-control" name="materialId">
-                    <option value="" key="0" />
-                    {materials
-                      ? materials.map(otherEntity => (
-                          <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.id}
-                          </option>
-                        ))
-                      : null}
-                  </AvInput>
-                </AvGroup>
-                <AvGroup>
-                  <Label for="attached-image-service">
-                    <Translate contentKey="proceilApp.attachedImage.service">Service</Translate>
-                  </Label>
-                  <AvInput id="attached-image-service" type="select" className="form-control" name="serviceId">
-                    <option value="" key="0" />
-                    {services
-                      ? services.map(otherEntity => (
-                          <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.id}
-                          </option>
-                        ))
-                      : null}
-                  </AvInput>
-                </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/attached-image" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />
                   &nbsp;
@@ -199,8 +158,6 @@ export class AttachedImageUpdate extends React.Component<IAttachedImageUpdatePro
 }
 
 const mapStateToProps = (storeState: IRootState) => ({
-  materials: storeState.material.entities,
-  services: storeState.service.entities,
   attachedImageEntity: storeState.attachedImage.entity,
   loading: storeState.attachedImage.loading,
   updating: storeState.attachedImage.updating,
@@ -208,8 +165,6 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
-  getMaterials,
-  getServices,
   getEntity,
   updateEntity,
   setBlob,

@@ -1,6 +1,7 @@
 package me.chipnesh.proceil.repository
 
 import me.chipnesh.proceil.domain.MaterialArrivalModel
+import org.springframework.data.jpa.repository.EntityGraph
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor
 import org.springframework.stereotype.Repository
@@ -10,4 +11,7 @@ import org.springframework.stereotype.Repository
  */
 @SuppressWarnings("unused")
 @Repository
-interface MaterialArrivalRepository : JpaRepository<MaterialArrivalModel, Long>, JpaSpecificationExecutor<MaterialArrivalModel>
+interface MaterialArrivalRepository : JpaRepository<MaterialArrivalModel, Long>, JpaSpecificationExecutor<MaterialArrivalModel> {
+    @EntityGraph(attributePaths = ["request.material", "request.requester"])
+    fun findJoinedById(id: Long): MaterialArrivalModel
+}
